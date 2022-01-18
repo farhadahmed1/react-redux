@@ -13,15 +13,18 @@ const Products = () => {
     }, [])
     console.log(products);
     return (
-        <div className='card'>
+        <div >
             {/* <h2> Total number of product {products.length} </h2> */}
-            {
-                products.map(product => <Product
-                    key={product.id}
-                    product={product}
+            <div className='card'>
+                {
+                    products.map(product => <Product
+                        key={product.id}
+                        product={product}
 
-                />)
-            }
+                    />)
+                }
+            </div>
+
         </div>
     );
 };
