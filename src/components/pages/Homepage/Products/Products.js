@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { productFetch } from '../../../../redux/slice/productSlice';
 import Product from '../Product/Product';
 import './Products.css'
 const Products = () => {
 
-    const [products, setProducts] = useState([]);
+    const dispatch = useDispatch();
+    const { product } = useSelector((state) => state.product);
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
-            .then(res => res.json())
-            .then(data => setProducts(data))
+        dispatch(productFetch());
+    }, []);
 
-    }, [])
-    console.log(products);
+    // console.log(product);
     return (
         <div >
-            {/* <h2> Total number of product {products.length} </h2> */}
+            {/* <h2> Total number of product {product.length} </h2> */}
             <div className='card'>
                 {
-                    products.map(product => <Product
+                    product.map(product => <Product
                         key={product.id}
                         product={product}
 
