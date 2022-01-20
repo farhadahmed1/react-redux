@@ -12,6 +12,7 @@ const Products = () => {
         dispatch(productFetch());
     }, []);
 
+
     // console.log(product);
     return (
         <div >
