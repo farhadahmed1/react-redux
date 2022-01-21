@@ -1,25 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { productFetch } from '../../../../redux/slice/productSlice';
+import React from 'react';
+import { useGetAllProductsQuery } from '../../../../redux/slice/productApi';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { productFetch } from '../../../../redux/slice/productSlice';
 import Product from '../Product/Product';
 import './Products.css'
 const Products = () => {
 
-    const dispatch = useDispatch();
-    const { product } = useSelector((state) => state.product);
+    const { data, error, isLoading } = useGetAllProductsQuery();
+    // console.log(data);
+    // const dispatch = useDispatch();
+    // const { product } = useSelector((state) => state.product);
 
-    useEffect(() => {
-        dispatch(productFetch());
-    }, []);
+    // useEffect(() => {
+    //     dispatch(productFetch());
+    // }, []);
 
 
     // console.log(product);
     return (
         <div >
-            {/* <h2> Total number of product {product.length} </h2> */}
+
             <div className='card'>
                 {
-                    product.map(product => <Product
+                    data?.map(product => <Product
                         key={product.id}
                         product={product}
 
